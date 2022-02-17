@@ -11,31 +11,51 @@
 </head>
 <body>
 
-	<svg id="map-grid">
+	<div class="grid-container">
+
+		<div class="header">
+
+				<h2>London's 1854 Cholera Epidemic</h2>
+				<h3>Visualization by Krystal Nolasco</h3>
+
+		</div>
+
+		<div class="main">
+
+			<div id="map-div">
+				<h3>Map of Outbreak</h3>
+				<svg id="map-grid"></svg>
+
+			</div>
+
+		</div>
 
 
-	</svg>
 
 
+	</div>
 	<script>
 
 		// create svg area
     var svg = d3.select('#map-grid')
-      .attr('width', 800)
-      .attr('height', 800)
-      .style('border', 'solid');
+      .attr('width', 500)
+      .attr('height', 500);
+      //.style('border', 'solid');
 
 		// DRAWING THE MAP *********************************************************
+		var mapScale = 30;
+		var mapOffset_X = 570;
+		var mapOffset_Y = 550;
+
 
 		//load streets data
     d3.json('streets.json', function (data) {
 
 			//lines
       var linefunc = d3.svg.line()
-        .x(function(d) {return (1 - d.x) * 30 + 600})
-        .y(function(d) {return (1 - d.y) * 30 + 600})
+        .x(function(d) {return (1 - d.x) * mapScale + mapOffset_X})
+        .y(function(d) {return (1 - d.y) * mapScale + mapOffset_Y});
         //.interpolate("linear");
-
 
       //draw map
       var drawMap = svg.selectAll('path')
@@ -58,27 +78,26 @@
 				.enter().append('circle')
 				.style('fill', 'black')
 				.attr('r', 5)
-				.attr('cx', function(d) {return (1 - d.x) * 30 + 600})
-				.attr('cy', function(d) {return (1 - d.y) * 30 + 600})
-		})
+				.attr('cx', function(d) {return (1 - d.x) * mapScale + mapOffset_X})
+				.attr('cy', function(d) {return (1 - d.y) * mapScale + mapOffset_Y})
+		});
 
 
 
 		// ADDING DEATH LOCATIONS TO MAP *******************************************
 
 		d3.csv('deaths_age_sex.csv', function (data) {
-			console.log(data);
-
+			//console.log(data);
 
 			var drawDeaths = svg.selectAll('circle')
 				.data(data)
 				.enter().append('circle')
 				.style('fill', '#8AC926')
 				.attr('r', 5)
-				.attr('cx', function(d) {return (1 - d.x) * 30 + 600})
-				.attr('cy', function(d) {return (1 - d.y) * 30 + 600})
+				.attr('cx', function(d) {return (1 - d.x) * mapScale + mapOffset_X})
+				.attr('cy', function(d) {return (1 - d.y) * mapScale + mapOffset_Y})
 
-		})
+		});
 
 
 	</script>
