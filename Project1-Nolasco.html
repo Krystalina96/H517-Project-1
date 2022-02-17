@@ -40,7 +40,7 @@
       emptyArray = data;
       //console.log();
       var linefunc = d3.svg.line()
-        .x(function(d) {return d.x * 30})
+        .x(function(d) {return (1- d.x) * 30 + 600})
         .y(function(d) {return (1- d.y) * 30 + 600})
         //.interpolate("linear");
 
