@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Project 1</title>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+
+	<style>
+
+	</style>
+</head>
+<body>
+
+	<svg id="main">
+
+
+	</svg>
+
+
+	<script>
+
+    var svg = d3.select('#main')
+      .attr('width', 800)
+      .attr('height', 800)
+      .style('border', 'solid');
+
+    /*
+    svg.append('line')
+    .style('stroke', 'black')
+    .style('stroke-width', 2)
+    .attr('x1', 16.7380009 * 30)
+    .attr('y1', 18.6959991 * 30)
+    .attr('x2', 17.6599998 * 30)
+    .attr('y2', 18.7119999 * 30);
+    */
+
+    var emptyArray = [];
+
+    d3.json("streets.json", function (data) {
+      emptyArray = data;
+      //console.log();
+      var linefunc = d3.svg.line()
+        .x(function(d) {return d.x * 30})
+        .y(function(d) {return (1- d.y) * 30 + 600})
+        //.interpolate("linear");
+
+
+      //draw map
+      var drawMap = svg.selectAll(".line")
+        .data(emptyArray)
+        .enter().append("path")
+        //.attr("class", "drawMap")
+        .style('stroke','black')
+        .style("stroke-width", 2)
+        //.attr("x1", function(d) { return d[0].x * 30; })
+        //.attr("y1", function(d) { return d[0].y * 30; })
+        //.attr("x2", function(d) { return d[1].x * 30; })
+        //.attr("y2", function(d) { return d[1].y * 30; });
+        .attr("d", linefunc)
+        .style("fill", "none");
+
+
+    });
+
+
+
+
+
+	</script>
+</body>
+
+
+</html>
