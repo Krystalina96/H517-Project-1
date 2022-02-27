@@ -116,9 +116,15 @@
 			.style('border', 'solid');
 
 			//set bar chart height and width
+			/*
 			var margin = 200,
 					width = svg_timeline.attr('width') - margin,
 					height = svg_timeline.attr('height') - margin;
+			*/
+
+			var margin = {top: 0, right: 20, bottom: 30, left: 40},
+					width = 500 - margin.left - margin.right,
+					height = 500 - margin.top - margin.bottom;
 
 			//set bar chart scale
 			//var timelineScale_X = d3.scaleBand().range ([0, width]),
@@ -136,17 +142,23 @@
 
 			d3.csv('deathdays.csv', function (data) {
 					//console.log(data);
-					timelineScale_X = d3.scale.ordinal().domain(data.map(function(d) {return d.date;})).rangeRoundBands([0, width]);;
+					timelineScale_X = d3.scale.ordinal()
+						.domain(data.map(function(d) {return d.date;}))
+						.rangeRoundBands([0, width], .1);
 					//timelineScale_Y = d3.scale.linear().domain([0, d3.max(data, function(d) {return d.deaths; })]).range([height, 0]);
-					timelineScale_Y = d3.scale.linear().domain([0, width]).range([height - margin, 0]);
+					timelineScale_Y = d3.scale.linear()
+						.domain([0, width])
+						.range([height - margin.top - margin.bottom, 0]);
 
 					var drawTimeline = svg_timeline.selectAll('bar')
 						.data(data)
 						.enter().append('rect')
-						.attr('x', function(d) {console.log(timelineScale_X(d.date)); return timelineScale_X(d.date); })
-						.attr('y', function(d) {console.log(d.deaths); return (height - margin) - (d.deaths * (height - margin) / width) * 5 + 300; })
-						.attr('width', 5) //CHECK This
-						.attr('height', function(d) {return (height - margin) / width * d.deaths * 5; });
+						.attr('x', function(d) { return timelineScale_X(d.date); })
+						//.attr('y', function(d) { return (height - margin) - (d.deaths * (height - margin) / width) * 8 + 300; })
+						.attr('y', function(d) { return (height - margin.top - margin.bottom) - (d.deaths * (height - margin.top - margin.bottom) / width) * 3; })
+						.attr('width', timelineScale_X.rangeBand())
+						//.attr('height', function(d) {return (height - margin) / width * d.deaths * 8; });
+						.attr('height', function(d) {return (height - margin.top - margin.bottom) / width * d.deaths * 3; });
 
 
 
