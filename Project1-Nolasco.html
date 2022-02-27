@@ -140,16 +140,46 @@
 					*/
 
 
+
 			d3.csv('deathdays.csv', function (data) {
 					//console.log(data);
-					timelineScale_X = d3.scale.ordinal()
+					var timelineScale_X = d3.scale.ordinal()
 						.domain(data.map(function(d) {return d.date;}))
 						.rangeRoundBands([0, width], .1);
 					//timelineScale_Y = d3.scale.linear().domain([0, d3.max(data, function(d) {return d.deaths; })]).range([height, 0]);
-					timelineScale_Y = d3.scale.linear()
+					var timelineScale_Y = d3.scale.linear()
 						.domain([0, width])
 						.range([height - margin.top - margin.bottom, 0]);
 
+					//define scale for x axis
+					var x_Scale = d3.time.scale()
+						.domain([new Date(1854,8,19), new Date(1854,9,29)])
+						.range([0, width]);
+
+
+					//create axes
+					var x_Axis = d3.svg.axis()
+						.scale(x_Scale);
+
+					var y_Axis = d3.svg.axis()
+						.orient('left')
+						.scale(timelineScale_Y);
+
+						svg_timeline.append("g")
+							.attr('class', 'x-axis')
+							.attr('transform', 'translate(0,' + height + ')')
+							.call(x_Axis);
+
+						svg_timeline.append("g")
+							.attr('class', 'y-axis')
+							.attr('transform', 'rotate(90)')
+							.call(y_Axis);
+
+
+
+
+
+					//bar chart
 					var drawTimeline = svg_timeline.selectAll('bar')
 						.data(data)
 						.enter().append('rect')
