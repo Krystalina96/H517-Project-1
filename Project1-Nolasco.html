@@ -117,8 +117,8 @@
 			//create svg area
 			var svg_timeline = d3.select('#timeline-grid')
 				.attr('width', width + margin.left + margin.right)
-				.attr('height', height + margin.top + margin.bottom)
-				.style('border', 'solid');
+				.attr('height', height + margin.top + margin.bottom);
+				//.style('border', 'solid');
 
 			d3.csv('deathdays.csv', function (data) {
 					//console.log(data);
@@ -141,7 +141,8 @@
 
 					var y_Axis = d3.svg.axis()
 						.orient('left')
-						.scale(timelineScale_Y);
+						.scale(timelineScale_Y)
+						.ticks(10);
 
 						svg_timeline.append("g")
 							.attr('class', 'x-axis')
@@ -161,6 +162,14 @@
 						.attr('y', function(d) { return timelineScale_Y(d.deaths); })
 						.attr('width', timelineScale_X.rangeBand())
 						.attr('height', function(d) { return height - timelineScale_Y(d.deaths)})
+						.on('mouseover', function(d) {
+							d3.select(this)
+							.style('fill', '#1982C4');
+						})
+						.on('mouseout', function(d) {
+							d3.select(this)
+							.style('fill', 'black');
+						})
 			});
 
 
