@@ -43,6 +43,11 @@
 	</div>
 	<script>
 
+		//set colors
+		var colorGreen = '#8AC926',
+				colorBlue = '#1982C4';
+
+
 		// DRAWING THE MAP *********************************************************
 
 		// create svg area
@@ -94,18 +99,45 @@
 
 		// ADDING DEATH LOCATIONS TO MAP *******************************************
 
-		d3.csv('deaths_age_sex.csv', function (data) {
-			//console.log(data);
+		//add a date to the death_age_sex file
+		d3.csv('deathdays.csv', function(deathdays) {
 
-			var drawDeaths = svg_map.selectAll('circle')
-				.data(data)
-				.enter().append('circle')
-				.style('fill', '#8AC926')
-				.attr('r', 5)
-				.attr('cx', function(d) {return (1 - d.x) * mapScale + mapOffset_X})
-				.attr('cy', function(d) {return (1 - d.y) * mapScale + mapOffset_Y})
+			d3.csv('deaths_age_sex.csv', function (deathlocations) {
 
-		});
+				//console.log(deathdays);
+				//console.log(deathlocations);
+				var p = 0; // person in deathlocations
+
+				for(i = 0; i < deathdays.length; i++) {
+					//grab date & number of deaths
+					var deathDate = deathdays[i].date,
+							dailyDeaths = deathdays[i].deaths;
+							//console.log(deathDate + " " + dailyDeaths);
+
+					//add the date to deaths_age_sex
+					for(j = 0; j < dailyDeaths; j++) {
+						deathlocations[p].date = deathDate;
+						p++; // go to the next person in deathlocations
+
+						//console.log(p + " " + deathDate);
+					}
+				};
+
+				//draw death circles on the map
+				var drawDeaths = svg_map.selectAll('circle')
+					.data(deathlocations)
+					.enter().append('circle')
+					.style('fill', colorGreen)
+					.attr('r', 5)
+					.attr('cx', function(d) {return (1 - d.x) * mapScale + mapOffset_X})
+					.attr('cy', function(d) {return (1 - d.y) * mapScale + mapOffset_Y})
+					//.attr('id', function(d) {return 'deaths' + d.id; })
+					.attr('class', function(d) {console.log ('death' + d.date); return 'death' + d.date; });
+
+			});
+		})
+
+
 
 
 		// TIMELINE OF DEATHS BAR CHART ********************************************
@@ -164,11 +196,21 @@
 						.attr('height', function(d) { return height - timelineScale_Y(d.deaths)})
 						.on('mouseover', function(d) {
 							d3.select(this)
-							.style('fill', '#1982C4');
+								.style('fill', colorBlue);
+
+							d3.selectAll('.' + 'death' + d.date)
+								.style('fill', colorBlue)
+								.attr('r', '8');
 						})
 						.on('mouseout', function(d) {
 							d3.select(this)
 							.style('fill', 'black');
+
+							d3.selectAll('.' + 'death' + d.date)
+								.style('fill', colorGreen)
+								.attr('r', '5');
+
+
 						})
 			});
 
