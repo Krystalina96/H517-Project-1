@@ -1,0 +1,9 @@
+/******************** BAR CHART ********************/
+
+
+.y-axis path,
+.x-axis path {
+  fill: none;
+  stroke: black;
+  stroke-width: 1;
+}

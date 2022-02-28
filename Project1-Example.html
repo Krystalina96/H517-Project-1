@@ -10,7 +10,7 @@
     <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://cdnjs.com/libraries/d3-legend"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="example-css.css">
     <link rel="stylesheet" href="css/PieStyle.css">
 
 </head>
@@ -85,7 +85,7 @@
     });
 
     //add pumps
-    d3.csv("data/pumps.csv", function (data) {
+    d3.csv("pumps.csv", function (data) {
         console.log(data)
         var dots = d3.select('#map-area').append('g');
 
@@ -106,9 +106,9 @@
 
     // Merge "deathdays.csv" & "deaths_age_sex.csv"-----------------------------------------------
     //merge the two table so that the deaths_age_sex has a new "Date" column
-    d3.csv("data/deathdays.csv", function (days) {
+    d3.csv("deathdays.csv", function (days) {
 
-        d3.csv("data/deaths_age_sex.csv", function (deaths) {
+        d3.csv("deaths_age_sex.csv", function (deaths) {
 
             //j points to the last victim we checked in deaths
             var j=0;
