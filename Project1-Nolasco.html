@@ -142,7 +142,7 @@
 
 		// TIMELINE OF DEATHS BAR CHART ********************************************
 
-			var margin = {top: 0, right: 20, bottom: 30, left: 40},
+			var margin = {top: 0, right: 20, bottom: 30, left: 60},
 					width = 500 - margin.left - margin.right,
 					height = 500 - margin.top - margin.bottom;
 
@@ -173,18 +173,33 @@
 
 					var y_Axis = d3.svg.axis()
 						.orient('left')
-						.scale(timelineScale_Y)
-						.ticks(10);
+						.scale(timelineScale_Y);
+						//.ticks(7);
+						//.ticks(10);
 
-						svg_timeline.append("g")
-							.attr('class', 'x-axis')
-							.attr('transform', 'translate(' + margin.left + ',' + height +')')
-							.call(x_Axis);
+					svg_timeline.append("g")
+						.attr('class', 'x-axis')
+						.attr('transform', 'translate(' + margin.left + ',' + height +')')
+						.call(x_Axis);
 
-						svg_timeline.append("g")
-							.attr('class', 'y-axis')
-							.attr('transform', 'translate(' + margin.left + ',0)')
-							.call(y_Axis);
+					svg_timeline.append("g")
+						.attr('class', 'y-axis')
+						.attr('transform', 'translate(' + margin.left + ',0)')
+						.call(y_Axis);
+
+					//y axis text label
+					svg_timeline.append('text')
+						.attr('class', 'y-axis-label')
+						.attr('text-anchor', 'middle')
+						.attr('y', 55)
+						//.attr('x', height / 2 - 60)
+						.attr('x', height / 2)
+						.attr('transform', 'translate(' + margin.left + ')')
+						.attr('transform', function(d) {
+							return 'translate(' + margin.left + ') rotate(90)'
+						})
+						.text('Number of Deaths');
+
 
 					//bar chart
 					var drawTimeline = svg_timeline.selectAll('bar')
