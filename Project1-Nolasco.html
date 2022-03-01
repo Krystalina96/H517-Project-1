@@ -45,7 +45,8 @@
 
 		//set colors
 		var colorGreen = '#8AC926',
-				colorBlue = '#1982C4';
+				colorBlue = '#1982C4'
+				colorRed = '#FF595E';
 
 
 		// DRAWING THE MAP *********************************************************
@@ -127,8 +128,16 @@
 				var drawDeaths = svg_map.selectAll('circle')
 					.data(deathlocations)
 					.enter().append('circle')
-					.style('fill', colorGreen)
-					.attr('r', 5)
+					//.style('fill', colorGreen)
+					.style('fill', function(d) {
+						if (d.gender > 0) {
+							console.log(d.gender);
+							return colorBlue;
+						} else if (d.gender <= 0) {
+							return colorGreen;
+						}
+					})
+					.attr('r', 3)
 					.attr('cx', function(d) {return (1 - d.x) * mapScale + mapOffset_X})
 					.attr('cy', function(d) {return (1 - d.y) * mapScale + mapOffset_Y})
 					//.attr('id', function(d) {return 'deaths' + d.id; })
@@ -201,6 +210,8 @@
 						.text('Number of Deaths');
 
 
+
+
 					//bar chart
 					var drawTimeline = svg_timeline.selectAll('bar')
 						.data(data)
@@ -211,19 +222,26 @@
 						.attr('height', function(d) { return height - timelineScale_Y(d.deaths)})
 						.on('mouseover', function(d) {
 							d3.select(this)
-								.style('fill', colorBlue);
+								.style('fill', colorRed);
 
 							d3.selectAll('.' + 'death' + d.date)
-								.style('fill', colorBlue)
-								.attr('r', '8');
+								.style('fill', colorRed)
+								.attr('r', '6');
 						})
 						.on('mouseout', function(d) {
 							d3.select(this)
 							.style('fill', 'black');
 
 							d3.selectAll('.' + 'death' + d.date)
-								.style('fill', colorGreen)
-								.attr('r', '5');
+							.style('fill', function(d) {
+								if (d.gender > 0) {
+									console.log(d.gender);
+									return colorBlue;
+								} else if (d.gender <= 0) {
+									return colorGreen;
+								}
+							})
+								.attr('r', '2');
 
 
 						})
