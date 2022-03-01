@@ -30,6 +30,13 @@
 
 			</div>
 
+			<div id="map-information">
+
+				<h4>Map Information</h4>
+				<p id="map-information-text">Hover over points on the map for additional information.</p>
+
+			</div>
+
 			<div id="timeline-div">
 
 				<h3>Timeline of Deaths Per Day</h3>
@@ -131,7 +138,7 @@
 					//.style('fill', colorGreen)
 					.style('fill', function(d) {
 						if (d.gender > 0) {
-							console.log(d.gender);
+							//console.log(d.gender);
 							return colorBlue;
 						} else if (d.gender <= 0) {
 							return colorGreen;
@@ -141,7 +148,48 @@
 					.attr('cx', function(d) {return (1 - d.x) * mapScale + mapOffset_X})
 					.attr('cy', function(d) {return (1 - d.y) * mapScale + mapOffset_Y})
 					//.attr('id', function(d) {return 'deaths' + d.id; })
-					.attr('class', function(d) {console.log ('death' + d.date); return 'death' + d.date; });
+					.attr('class', function(d) { return 'death' + d.date; })
+					.on('mouseover', function (d) {
+
+						d3.select(this).attr('r', '6');
+
+						//set victim age range
+						var ageRange = "";
+
+						switch(d.age) {
+							case '0':
+								ageRange = "0-10";
+								break;
+							case '1':
+								ageRange = "11-20";
+								break;
+							case '2':
+								ageRange = "21-40";
+								break;
+							case '3':
+								ageRange = "41-60";
+								break;
+							case '4':
+								ageRange = "61-80";
+								break;
+							case '5':
+								ageRange = "> 80";
+						};
+
+						if (d.gender > 0) {
+							//victim is female
+							d3.select('#map-information-text').text('This victim was a female between ' + ageRange + ' years of age.');
+						} else if (d.gender <= 0) {
+							//victim is male
+							d3.select('#map-information-text').text('This victim was a male between ' + ageRange + ' years of age.');
+						}
+
+					})
+					.on('mouseout', function (d) {
+						d3.select(this).attr('r', '3')
+					});
+
+
 
 			});
 		})
@@ -235,13 +283,14 @@
 							d3.selectAll('.' + 'death' + d.date)
 							.style('fill', function(d) {
 								if (d.gender > 0) {
-									console.log(d.gender);
+									//females are blue
 									return colorBlue;
 								} else if (d.gender <= 0) {
+									//males are green
 									return colorGreen;
 								}
 							})
-								.attr('r', '2');
+								.attr('r', '3');
 
 
 						})
