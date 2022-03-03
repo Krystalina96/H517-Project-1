@@ -83,6 +83,7 @@
 			mapOffset_X = 650,
 			mapOffset_Y = 545;
 
+
 		//load streets data
     d3.json('streets.json', function (data) {
 
@@ -101,6 +102,38 @@
         .attr('d', linefunc)
         .style('fill', 'none');
     });
+
+
+
+
+
+
+
+
+
+
+
+				var oxfordStreet = svg_map.append('text')
+					.attr('class', 'map-street-text')
+					.attr('x', 300)
+					.attr('y', 5)
+					.attr('transform', 'rotate(10)')
+					.text('Oxford Street');
+
+					var oxfordStreet_Dimensions = oxfordStreet.node().getBBox();
+					console.log(oxfordStreet_Dimensions);
+
+
+					svg_map.append('rect')
+					.attr('class', 'map-street-label')
+						.attr('width', 87.546875)
+						.attr('height', 18.399999618530273)
+						.attr('x', 300)
+						.attr('y', -9.40000057220459)
+						.attr('transform', 'rotate(10)');
+
+
+
 
 
 		// ADDING PUMPS ************************************************************
@@ -127,7 +160,7 @@
 			d3.csv('deaths_age_sex.csv', function (deathlocations) {
 
 				//console.log(deathdays);
-				console.log(deathlocations);
+				//console.log(deathlocations);
 				var p = 0; // person in deathlocations
 
 				for(i = 0; i < deathdays.length; i++) {

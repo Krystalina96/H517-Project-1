@@ -45,6 +45,12 @@
 
 */
 
+
+.map-street-text {
+  fill: black;
+}
+
+
 .y-axis path,
 .x-axis path {
   fill: none;
@@ -52,7 +58,9 @@
   stroke-width: 1;
 }
 
+/*
+
 #map-grid {
   transform: scaleX(-1);
-  stroke
 }
+*/
