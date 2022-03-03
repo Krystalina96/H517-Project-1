@@ -8,6 +8,6 @@
   stroke-width: 1;
 }
 
-.y-axis-label {
-  color: purple;
+#map-grid {
+  transform: scaleX(-1);
 }

@@ -74,14 +74,14 @@
 
 		// create svg area
     var svg_map = d3.select('#map-grid')
-      .attr('width', 420)
-      .attr('height', 400);
+      .attr('width', 600)
+      .attr('height', 600);
       //.style('border', 'solid');
 
 		//map scale and offset
-		var mapScale = 25,
-			mapOffset_X = 475,
-			mapOffset_Y = 445;
+		var mapScale = 30,
+			mapOffset_X = 650,
+			mapOffset_Y = 545;
 
 		//load streets data
     d3.json('streets.json', function (data) {
@@ -127,7 +127,7 @@
 			d3.csv('deaths_age_sex.csv', function (deathlocations) {
 
 				//console.log(deathdays);
-				//console.log(deathlocations);
+				console.log(deathlocations);
 				var p = 0; // person in deathlocations
 
 				for(i = 0; i < deathdays.length; i++) {
