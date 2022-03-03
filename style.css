@@ -1,5 +1,49 @@
 /******************** BAR CHART ********************/
+/*
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 2fr 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+*/
+/*
 
+.grid-container {
+  display: grid;
+  align-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+
+}
+
+.first-row,
+.second-row {
+  border: solid;
+  background-color: #faf3c3;
+  padding: 30px;
+}
+
+#map-grid-container {
+  display: grid;
+  align-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: purple;
+}
+
+
+#map,
+#map-information {
+  border: solid;
+  background-color: #faf3c3;
+  padding: 0px;
+}
+
+*/
 
 .y-axis path,
 .x-axis path {
@@ -10,4 +54,5 @@
 
 #map-grid {
   transform: scaleX(-1);
+  stroke
 }
