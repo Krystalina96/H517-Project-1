@@ -105,34 +105,42 @@
 
 
 
+		//oxford street label
+		svg_map.append('rect')
+			.attr('class', 'map-street-label')
+			.attr('width', 87.546875)
+			.attr('height', 18.399999618530273)
+			.attr('x', 300)
+			.attr('y', -9.40000057220459)
+			.attr('transform', 'rotate(10)');
 
 
+		var oxfordStreet = svg_map.append('text')
+			.attr('class', 'map-street-text')
+			.attr('x', 300)
+			.attr('y', 5)
+			.attr('transform', 'rotate(10)')
+			.text('Oxford Street');
+
+			//var oxfordStreet_Dimensions = oxfordStreet.node().getBBox();
+			//console.log(oxfordStreet_Dimensions);
+
+		//regent street label
+
+		svg_map.append('rect')
+			.attr('class', 'map-street-label')
+			.attr('width', 86.65625)
+			.attr('height', 18.399999618530273)
+			.attr('x', 0)
+			.attr('y', -14.40000057220459)
+			//.attr('transform', 'rotate(10)');
+			.attr('transform', 'translate(415, 300) rotate(-60)');
 
 
-
-
-
-
-				var oxfordStreet = svg_map.append('text')
-					.attr('class', 'map-street-text')
-					.attr('x', 300)
-					.attr('y', 5)
-					.attr('transform', 'rotate(10)')
-					.text('Oxford Street');
-
-					var oxfordStreet_Dimensions = oxfordStreet.node().getBBox();
-					console.log(oxfordStreet_Dimensions);
-
-
-					svg_map.append('rect')
-					.attr('class', 'map-street-label')
-						.attr('width', 87.546875)
-						.attr('height', 18.399999618530273)
-						.attr('x', 300)
-						.attr('y', -9.40000057220459)
-						.attr('transform', 'rotate(10)');
-
-
+			var regentStreet = svg_map.append('text')
+				.attr('class', 'map-street-text')
+				.attr('transform', 'translate(415, 300) rotate(-60)')
+				.text('Regent Street');
 
 
 
