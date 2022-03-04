@@ -1,0 +1,194 @@
+body {
+    font-family: 'Segoe UI';
+}
+
+/* SIDEBAR MENU */
+.sidenav {
+    height: 100%; 
+    width: 200px; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    left: 0;
+    background-color: #111; 
+    overflow-x: hidden; 
+    padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+    margin-left: 200px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+/* timelines graph axes */
+
+.y-axis path,
+.x-axis path {
+  fill: none;
+  stroke: black;
+  stroke-width: 1;
+}
+
+/* GRID */ 
+
+.item1 { grid-area: map; }
+.item2 { grid-area: gender; }
+.item3 { grid-area: age; }
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'map map map map'
+        'gender gender age age';
+    gap: 10px;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.grid-container > div {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.item1,
+.item2,
+.item3 {
+    padding: 20px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#map { grid-area: map; }
+#timeline { grid-area: timeline}
+
+.item1 {
+    display: grid;
+    grid-template-areas:
+        'map timeline';
+    gap: 10px; 
+}
+
+.item1 > div {
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+
+/* headers */
+
+.header,
+.sub-header,
+.sub-sub-header {
+    font-weight: bold;
+}
+
+.header {
+    font-size: 50px;
+    padding: 5px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#sub-title {
+    font-weight: bold;
+    font-size: 20px;
+    text-align:center;
+    margin-top: 10px;
+}
+
+.sub-header {
+    font-size: 30px;
+    margin: 0px;
+}
+
+.sub-sub-header {
+    font-size: 25px;
+    margin-bottom: 5px; 
+}
+
+/* map */
+
+.information-text {
+    font-size: 20px; 
+    margin-bottom: 10px;
+}
+
+#map-grid {
+    transform: scaleX(-1);
+}
+
+.street-label {
+    transform: scaleX(-1);
+}
+
+/* footer */ 
+.footer {
+    text-align: center;
+    margin: 20px;
+}
+
+/************************* ABOUT PAGE *************************/
+.about > div 
+:not(.header, .sub-header) {
+    font-size: 20px;
+}
+
+.sketch {
+    width: 700px; 
+    height: auto;
+}
+
+.screenshot {
+    width: 400px;
+    height: auto;
+}
+
+.discovery-grid-container li {
+    margin: 20px; 
+}
+
+.about-item0,
+.about-item1,
+.about-item2,
+.about-item3 {
+    margin: 30px; 
+    padding: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/************************* VIDEO PAGE *************************/
+.video > div {
+    margin: 50px;
+}
+
+.video-embed {
+    padding: 50px; 
+}
+
+iframe {
+    margin: 0 auto;
+    display: block;
+}
+
+
