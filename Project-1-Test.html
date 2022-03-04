@@ -96,7 +96,8 @@
 
       //OXFORD STREET
       var oxfordStGroup = svg_map.append('g')
-        .attr('transform', 'translate(300, 42) rotate(11)');
+        .attr('transform', 'translate(300, 55) rotate(11)');
+      
 
       var oxfordWidth = 100,
           oxfordHeight = 20;
@@ -107,7 +108,8 @@
         .style('fill', 'black');
 
       var oxfordText = oxfordStGroup.append('text')
-        .attr('x', oxfordWidth / 2)
+        .attr('class', 'street-label')
+        .attr('x', (oxfordWidth / 2) - 100)
         .attr('y', oxfordHeight / 2)
         .attr('alignment-baseline', 'middle')
         .attr('text-anchor', 'middle')
@@ -116,9 +118,11 @@
         .style('font-weight', 'bold')
         .text('Oxford Street');
 
+        
+
       //REGENT STREET
       var regentStGroup = svg_map.append('g')
-        .attr('transform', 'translate(408, 280) rotate(-60.5)');
+        .attr('transform', 'translate(445, 380) rotate(-60.5)');
 
       var regentWidth = 100,
           regentHeight = 20;
@@ -128,8 +132,9 @@
         .attr('height', regentHeight)
         .style('fill', 'black');
 
-      var oxfordText = regentStGroup.append('text')
-        .attr('x', regentWidth / 2)
+      var regentText = regentStGroup.append('text')
+        .attr('class', 'street-label')
+        .attr('x', (regentWidth / 2) - 100)
         .attr('y', regentHeight / 2)
         .attr('alignment-baseline', 'middle')
         .attr('text-anchor', 'middle')
@@ -137,6 +142,8 @@
         .style('font-size', 12)
         .style('font-weight', 'bold')
         .text('Regent Street');
+
+        console.log(regentStGroup.node().getBBox());
 
       //WORK HOUSE
       var workHouseGroup = svg_map.append('g')

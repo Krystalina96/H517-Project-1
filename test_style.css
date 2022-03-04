@@ -113,3 +113,11 @@ body {
 }
 
 
+.street-label {
+    transform: scaleX(-1);
+}
+
+
+
+
+
