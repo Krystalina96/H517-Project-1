@@ -17,8 +17,24 @@
     </div>
   
     <!-- Page content -->
-    <div class="main">
+    <div class="about main">
         <div class="header">About</div>
+
+        <div class="about-item0">
+            <p class="sub-header">Purpose & Data</p>
+            <p class="item-text">
+                The purpose of this project was to make an interactive visualization of Dr. John Snow's map of London's 1854 cholera epidemic using D3.js. 
+            </p>
+            <p class="item-text">
+                <b>The data I used to achieve this included the following:</b>
+                <ul>
+                    <li><b>streets.json</b> - this file contains the coordinates of the streets in line segments</li>
+                    <li><b>pumps.csv</b> - this file has contains the locations of the 13 water pumps</li>
+                    <li><b>deathdays.csv</b> - this file contains the number of deaths for each day of the outbreak</li>
+                    <li><b>deaths_age_sex.csv</b> - this file contains the location of each death, in order, as well as the gender and sex of each victim</li>
+                </ul>
+            </p>
+        </div>
 
         <div class="about-item1">
             <p class="sub-header">Design Process</p>
@@ -26,22 +42,25 @@
                 The first thing I did to begin designing this project was look up different visuals of the London Cholera Map to get a better feel for what it should look like.
                 Since the data for the project is essentially a lot of line segments I knew it wouldn't look exactly like the original Cholera map so I wanted to set the right 
                 expectations for the project. This step was extremely helpful as it also gave me ideas for how I could layout the whole page including the map and additional graphs. 
-                <br><br>To better visualize my ideas I created an initial sketch: 
+                <br><br><b>To better visualize my ideas I created an initial sketch:</b> 
             </p>
-            <img class="sketch" src="Sketch-1.jpg" alt="First sketch of visualization">
+            <img class="sketch" src="images/Sketch-1.jpg" alt="First sketch of visualization">
             <p class-="item-text">
                 After the first sketch I decided to start working on creating the map and the graphs as I assumed this step would take the longest, and I wanted to make sure I could
                 successfully make each visualization before I started worrying about styling the page. In retrospect this might have been a mistake because once I was ready to start styling
                 the page I ended up creating a whole new html file in order to be more deliberate about the divs I was creating to fit the layout I wanted. This also lead to me having to 
-                tweak my initial sketch. <br><br>I ended up creating two new iterations: 
+                tweak my initial sketch. 
+                <br><br>
+                <b>I ended up creating two new iterations: </b>
             </p>
-            <img class="sketch" src="Sketch-2.jpg" alt="Second sketch of visualization">
-            <p>
+            <img class="sketch" src="images/Sketch-2.jpg" alt="Second sketch of visualization">
+            <p class-="item-text">
                 The first additional sketch I made I changed the navigation bar to have all navigation links on the left. After trying it out in my code I decided I didn't like having 
                 such a wide space to place the visualizations on because it left too much white space. 
-                <br><br>With this in mind I created my final sketch using a side navigation bar which was the layout I ended up keeping: 
+                <br><br>
+                <b>With this in mind I created my final sketch using a side navigation bar which was the layout I ended up keeping: </b>
             </p>
-            <img class="sketch" src="Sketch-3.jpg" alt="Final sketch of visualization">
+            <img class="sketch" src="images/Sketch-3.jpg" alt="Final sketch of visualization">
         </div>
 
         <div class="about-item2">
@@ -50,7 +69,8 @@
                 When deciding on a color palette I wanted to use colors that were bright enough that they could be easily differentiated, but also make sure that they were somewhat easy 
                 to look at. To do this I used the website 'coolors.co' which is a random palette generator. Once I settled on a palette I liked, I ran it through a color blindness similator
                 (color-blindness.com) to make sure it would be acceptable in that regard. 
-                <br><br>Next I decided where to apply the colors I had chosen: 
+                <br><br>
+                <b>Next I decided where to apply the colors I had chosen:</b>
             </p>
             <svg id="palette-grid" overflow="auto"></svg>
             <p class="item-text">
@@ -72,34 +92,38 @@
         <div class="about-item3">
             <p class="sub-header">Discoveries & Questions</p>
             <p class="'item-text">
-                Before beginning this project I had some initial questions: 
+                <b>Before beginning this project I had some initial questions: </b>
                 <ul>
                     <li>What does the map tell us about where the infection was coming from?</li>
                     <li>How quickly did the outbreak spread?</li>
                     <li>Was there a significant difference in deaths by gender?</li>
                     <li>Was there a significant difference in deaths by age group? Did it affect older or younger people more?</li>
                 </ul>
-                After completing the visualizations these questions were easy to answer: 
-                <ul>
-                    <li>
+                <b>After completing the visualizations these questions were easy to answer:</b> 
+                <ul class="discovery-grid-container">
+                    <li class="discovery-item1">
                         The most obvious discovery from the map visualation is that you can easily see that the pump in the middle next to the brewery likely had the infected water, as a huge 
                         majority of the deaths are clustered in that general area.
                     </li>
-                    <li>
+                    <img class="screenshot discovery-item2" src="images/map-screenshot.png">
+                    <li class="discovery-item3">
                         Another interesting thing to note is how quickly the deaths shot up and then went down. The whole outbreak only lasted the span of a couple of months but yet caused the 
                         deaths of over 500 people.  
                     </li>
-                    <li>
+                    <img class="screenshot discovery-item4" src="images/timeline-screenshot.png">
+                    <li class="discovery-item5">
                         It is clear that Cholera does not discriminate based on gender, as the gender split of deaths is almost completely even. 
                     </li>
-                    <li>
+                    <img class="screenshot discovery-item6" src="images/gender-screenshot.png">
+                    <li class="discovery-item7">
                         As I suspected, age did affect the outcomes. The age groups greatest affected were children and the elderly. 
                     </li>
+                    <img class="screenshot discovery-item8" src="images/age-screenshot.png">
                 </ul>
             </p>
         </div>
 
-        <div class="footer">Krystal Nolasco</div>
+        <div class="footer">&copy; Copyright 2022 Krystal Nolasco</div>
     </div>
 
     <script>

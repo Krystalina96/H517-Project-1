@@ -95,10 +95,7 @@ body {
 
 
 
-/* header */
-
-
-
+/* headers */
 
 .header,
 .sub-header,
@@ -110,6 +107,7 @@ body {
     font-size: 50px;
     padding: 5px;
     text-align: center;
+    margin-top: 30px;
 }
 
 #sub-title {
@@ -129,6 +127,8 @@ body {
     margin-bottom: 5px; 
 }
 
+/* map */
+
 .information-text {
     font-size: 20px; 
     margin-bottom: 10px;
@@ -138,17 +138,42 @@ body {
     transform: scaleX(-1);
 }
 
-
 .street-label {
     transform: scaleX(-1);
 }
 
+/* footer */ 
+.footer {
+    text-align: center;
+    margin: 20px;
+}
+
 /************************* ABOUT PAGE *************************/
+.about > div 
+:not(.header, .sub-header) {
+    font-size: 20px;
+}
 
 .sketch {
     width: 700px; 
     height: auto;
 }
 
+.screenshot {
+    width: 400px;
+    height: auto;
+}
 
+.discovery-grid-container li {
+    margin: 20px; 
+}
+
+.about-item0,
+.about-item1,
+.about-item2,
+.about-item3 {
+    margin: 30px; 
+    padding: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 

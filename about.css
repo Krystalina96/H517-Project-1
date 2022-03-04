@@ -1,0 +1,15 @@
+/************************* ABOUT PAGE *************************/
+
+.sketch {
+    width: 700px; 
+    height: auto;
+}
+
+.screenshot {
+    width: 400px;
+    height: auto;
+}
+
+li {
+    margin: 20px; 
+}
