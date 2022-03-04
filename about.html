@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="test_style.css">
+
+    <title>About</title>
+  </head>
+
+  <body>
+    <!-- Side navigation -->
+    <div class="sidenav">
+        <a href="visualization.html">Visualization</a>
+        <a href="about.html">About</a>
+        <a href="video.html">Video</a>
+    </div>
+  
+    <!-- Page content -->
+    <div class="main">
+        <div class="header">About</div>
+
+        <div class="about-item1">
+            <p class="sub-header">Design Process</p>
+            <p class="item-text">
+                The first thing I did to begin designing this project was look up different visuals of the London Cholera Map to get a better feel for what it should look like.
+                Since the data for the project is essentially a lot of line segments I knew it wouldn't look exactly like the original Cholera map so I wanted to set the right 
+                expectations for the project. This step was extremely helpful as it also gave me ideas for how I could layout the whole page including the map and additional graphs. 
+                <br><br>To better visualize my ideas I created an initial sketch: 
+            </p>
+            <img class="sketch" src="Sketch-1.jpg" alt="First sketch of visualization">
+            <p class-="item-text">
+                After the first sketch I decided to start working on creating the map and the graphs as I assumed this step would take the longest, and I wanted to make sure I could
+                successfully make each visualization before I started worrying about styling the page. In retrospect this might have been a mistake because once I was ready to start styling
+                the page I ended up creating a whole new html file in order to be more deliberate about the divs I was creating to fit the layout I wanted. This also lead to me having to 
+                tweak my initial sketch. <br><br>I ended up creating two new iterations: 
+            </p>
+            <img class="sketch" src="Sketch-2.jpg" alt="Second sketch of visualization">
+            <p>
+                The first additional sketch I made I changed the navigation bar to have all navigation links on the left. After trying it out in my code I decided I didn't like having 
+                such a wide space to place the visualizations on because it left too much white space. 
+                <br><br>With this in mind I created my final sketch using a side navigation bar which was the layout I ended up keeping: 
+            </p>
+            <img class="sketch" src="Sketch-3.jpg" alt="Final sketch of visualization">
+        </div>
+
+        <div class="about-item2">
+            <p class="sub-header">Design Choices</p>
+            <p class="item-text">
+                When deciding on a color palette I wanted to use colors that were bright enough that they could be easily differentiated, but also make sure that they were somewhat easy 
+                to look at. To do this I used the website 'coolors.co' which is a random palette generator. Once I settled on a palette I liked, I ran it through a color blindness similator
+                (color-blindness.com) to make sure it would be acceptable in that regard. 
+                <br><br>Next I decided where to apply the colors I had chosen: 
+            </p>
+            <svg id="palette-grid" overflow="auto"></svg>
+            <p class="item-text">
+                The next major design choice was the layout of the graphs. I knew immediately that I wanted the Timeline graph to be next to the map since it includes interactivity with the 
+                map so that just makes the most sense. I ultimately decided to include instructional / information text above both the map and the Timeline graph because I wanted to have 
+                them to appear to have the same dimensions visually, and I didn't like that it looked uneven with only the map information. It also just makes sense to include instructions
+                for the timeline graph as it is also interactive. This just left the remaining two graphs which made sense to layout next to each other.
+            </p>
+            <p class="item-text">
+                The last major design choice I made was how to design the map visualization as it has many points on it which can easily become overwhelming and hard to read. I carefully
+                chose the size of the death circles to be big enough to still distinguish, but not so big that they become a jumbled mess. I also decided to have them grow larger when 
+                you hover over them to emphasize which circle's information is being shown above. As the deaths are the visual I wanted to emphasize on the map, I chose to make the other 
+                elements (the pumps, buildings, and major street names) black and white. I just made sure to make them big enough to be distinguishable, and also included changes in color
+                or size when you hover over them to further distinguish them. Lastly, I made the deaths highlighted by the Timeline graph the red color and increased their size so they could 
+                easily pop against the rest of the map.  
+            </p>
+        </div>
+
+        <div class="about-item3">
+            <p class="sub-header">Discoveries & Questions</p>
+            <p class="'item-text">
+                Before beginning this project I had some initial questions: 
+                <ul>
+                    <li>What does the map tell us about where the infection was coming from?</li>
+                    <li>How quickly did the outbreak spread?</li>
+                    <li>Was there a significant difference in deaths by gender?</li>
+                    <li>Was there a significant difference in deaths by age group? Did it affect older or younger people more?</li>
+                </ul>
+                After completing the visualizations these questions were easy to answer: 
+                <ul>
+                    <li>
+                        The most obvious discovery from the map visualation is that you can easily see that the pump in the middle next to the brewery likely had the infected water, as a huge 
+                        majority of the deaths are clustered in that general area.
+                    </li>
+                    <li>
+                        Another interesting thing to note is how quickly the deaths shot up and then went down. The whole outbreak only lasted the span of a couple of months but yet caused the 
+                        deaths of over 500 people.  
+                    </li>
+                    <li>
+                        It is clear that Cholera does not discriminate based on gender, as the gender split of deaths is almost completely even. 
+                    </li>
+                    <li>
+                        As I suspected, age did affect the outcomes. The age groups greatest affected were children and the elderly. 
+                    </li>
+                </ul>
+            </p>
+        </div>
+
+        <div class="footer">Krystal Nolasco</div>
+    </div>
+
+    <script>
+        //set colors
+        var colorGreen = '#8AC926',
+            colorBlue = '#1982C4'
+            colorRed = '#FF595E';
+           
+        //create svg area
+        var svg_palette = d3.select('#palette-grid')
+            .attr('width', 1200)
+            .attr('height', 280);
+            //.style('border', 'solid');
+
+        //color rect
+        var g = svg_palette.selectAll('rect')
+            .data([10, 80, 150, 220])
+            .enter()
+            .append('g')
+            .classed('rect', true)
+        
+        var paletteColors = d3.scale.ordinal().range(['black', colorRed, colorGreen, colorBlue]);
+
+        var test = g.append('rect')
+            .attr('width', 50)
+            .attr('height', 50)
+            .attr('x', 20)
+            .attr('y', function(d) { return d; })
+            .attr('fill', function (d, i) { return paletteColors(i); });
+
+        svg_palette.append('text')
+            .attr('class', 'palette-label')
+            .attr('x', 90)
+            .attr('y', 39)
+            .text('I chose black as the main color for the side navigation and graphs because it is simple and easy to distinguish.');
+
+        svg_palette.append('text')
+            .attr('class', 'palette-label')
+            .attr('x', 90)
+            .attr('y', 109)
+            .text('I chose to use this red color as a hightlight and secondary color because it is bright enough to stand out.');
+
+        svg_palette.append('text')
+            .attr('class', 'palette-label')
+            .attr('x', 90)
+            .attr('y', 179)
+            .text('I wanted to keep the colors for genders consistent across all visualizations, so I chose this color for males as it is different enough from the red color.');
+
+        svg_palette.append('text')
+            .attr('class', 'palette-label')
+            .attr('x', 90)
+            .attr('y', 249)
+            .text('In the same vein, I choose this color for females because it easily distinguishable from both the red and the green.');
+        
+
+
+
+    </script>
+  </body>

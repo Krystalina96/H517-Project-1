@@ -13,32 +13,35 @@
     <div class="sidenav">
       <a href="visualization.html">Visualization</a>
       <a href="about.html">About</a>
-      <a href="#">Video</a>
+      <a href="video.html">Video</a>
     </div>
 
     <!-- Page content -->
     <div class="main">
       <div class="header">London's 1854 Cholera Epidemic</div>
+      <div id="sub-title">a visualization by Krystal Nolasco</div>
 
       <div class="grid-container">
         <div class="item1">
-          <p class="sub-header">Map of Outbreak</p>
-          <p class="information-text" id="map-information-text">Hover over points on the map for additional information.</p>
-          <svg id="map-grid"></svg>
+          <div id="map">
+            <p class="sub-header">Map of Outbreak</p>
+            <p class="information-text" id="map-information-text">Hover over points on the map for additional information.</p>
+            <svg id="map-grid"></svg>
+          </div>
+
+          <div id="timeline">
+            <p class="sub-header">Timeline of Deaths Per Day</p>
+            <p class="information-text">Hover over bars on the chart to visualize deaths by date on the map.</p>
+            <svg id="timeline-grid"></svg>
+          </div>
         </div>
 
         <div class="item2">
-          <p class="sub-header">Timeline of Deaths Per Day</p>
-          <p class="information-text">Hover over bars on the chart to visualize deaths by date on the map.</p>
-				  <svg id="timeline-grid"></svg>
-        </div>
-
-        <div class="item3">
           <p class="sub-sub-header">Deaths by Gender</p>
 				  <svg id="gender-graph-grid"></svg>
         </div>
 
-        <div class="item4">
+        <div class="item3">
           <p class="sub-sub-header">Deaths by Age Group</p>
 				  <svg id="age-graph-grid"></svg>
         </div>
@@ -91,6 +94,7 @@
           .attr('d', linefunc)
           .style('fill', 'none');
       });
+
 
 
 
@@ -213,7 +217,7 @@
         .style('font-weight', 'bold')
         .text('Brewery');
 
-        console.log(breweryGroup.node().getBBox());
+        //console.log(breweryGroup.node().getBBox());
       
       // ADDING PUMPS ************************************************************
 
@@ -229,10 +233,12 @@
           .attr('cy', function(d) {return (1 - d.y) * mapScale + mapOffset_Y})
           .on('mouseover', function (d) {
             d3.select(this).attr('r', '10');
+            d3.select(this).style('fill', colorRed);
             d3.select('#map-information-text').text('This is a water pump.');
           })
           .on('mouseout', function (d) {
             d3.select(this).attr('r', '7');
+            d3.select(this).style('fill', 'black');
             d3.select('#map-information-text').text('Hover over points on the map for additional information.');
           })
       });
