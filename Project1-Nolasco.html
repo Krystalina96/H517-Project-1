@@ -105,7 +105,7 @@
 
 
 
-		//oxford street label
+		//OXFORD STREET
 		var oxfordStGroup = svg_map.append('g')
 			.attr('transform', 'translate(300, 42) rotate(11)');
 
@@ -127,8 +127,7 @@
 			.style('font-weight', 'bold')
 			.text('Oxford Street');
 
-		//regent street label
-
+		//REGENT STREET
 		var regentStGroup = svg_map.append('g')
 			.attr('transform', 'translate(408, 280) rotate(-60.5)');
 
@@ -150,7 +149,7 @@
 			.style('font-weight', 'bold')
 			.text('Regent Street');
 
-		//work house
+		//WORK HOUSE
 		var workHouseGroup = svg_map.append('g')
 			.attr('transform', 'translate(335, 155) rotate(23)');
 
@@ -171,6 +170,29 @@
 			.style('font-size', 6)
 			.style('font-weight', 'bold')
 			.text('Work House');
+
+			//BREWERY
+			var breweryGroup = svg_map.append('g')
+				.attr('transform', 'translate(247, 229) rotate(-62.5)');
+
+			var breweryWidth = 32,
+					breweryHeight = 18;
+
+			breweryGroup.append('rect')
+				.attr('width', breweryWidth)
+				.attr('height', breweryHeight)
+				.style('fill', 'black');
+
+			var workHouseText = breweryGroup.append('text')
+				.attr('x', breweryWidth / 2)
+				.attr('y', breweryHeight / 2)
+				.attr('alignment-baseline', 'middle')
+				.attr('text-anchor', 'middle')
+				.style('fill', 'white')
+				.style('font-size', 6)
+				.style('font-weight', 'bold')
+				.text('Brewery');
+
 
 
 
@@ -278,8 +300,6 @@
 
 			});
 		})
-
-
 
 
 		// TIMELINE OF DEATHS BAR CHART ********************************************
