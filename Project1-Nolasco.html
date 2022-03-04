@@ -106,6 +106,29 @@
 
 
 		//oxford street label
+		var oxfordStGroup = svg_map.append('g')
+			.attr('transform', 'translate(300, 37) rotate(11)');
+
+		var oxfordWidth = 100,
+				oxfordHeight = 25;
+
+		oxfordStGroup.append('rect')
+			.attr('width', oxfordWidth)
+			.attr('height', oxfordHeight)
+			.style('fill', 'black');
+
+		var oxfordText = oxfordStGroup.append('text')
+			.attr('x', oxfordWidth / 2)
+			.attr('y', oxfordHeight / 2)
+			.attr('alignment-baseline', 'middle')
+			.attr('text-anchor', 'middle')
+			.style('fill', 'white')
+			.style('font-size', 12)
+			.style('font-weight', 'bold')
+			.text('Oxford Street');
+
+
+		/*
 		svg_map.append('rect')
 			.attr('class', 'map-street-label')
 			.attr('width', 87.546875)
@@ -121,6 +144,8 @@
 			.attr('y', 5)
 			.attr('transform', 'rotate(10)')
 			.text('Oxford Street');
+
+			*/
 
 			//var oxfordStreet_Dimensions = oxfordStreet.node().getBBox();
 			//console.log(oxfordStreet_Dimensions);
@@ -144,8 +169,7 @@
 
 		//work house
 		var workHouseGroup = svg_map.append('g')
-			.attr('transform', 'translate(335, 155) rotate(23)')
-			.attr('border', 'solid');
+			.attr('transform', 'translate(335, 155) rotate(23)');
 
 		var rectWidth = 40,
 				rectHeight = 30;
@@ -164,9 +188,6 @@
 			.style('font-size', 6)
 			.style('font-weight', 'bold')
 			.text('Work House');
-
-		var workHouseDimensions = workHouseText.node().getBBox();
-		console.log(workHouseDimensions);
 
 
 
