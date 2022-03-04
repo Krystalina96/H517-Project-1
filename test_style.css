@@ -1,4 +1,8 @@
-/* The sidebar menu */
+body {
+    font-family: 'Segoe UI';
+}
+
+/* SIDEBAR MENU */
 .sidenav {
     height: 100%; 
     width: 200px; 
@@ -45,3 +49,67 @@
   stroke: black;
   stroke-width: 1;
 }
+
+/* GRID */ 
+
+.item1 { grid-area: map; }
+.item2 { grid-area: timeline; }
+.item3 { grid-area: gender; }
+.item4 { grid-area: age; }
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'map map timeline timeline'
+        'gender gender age age';
+    gap: 10px;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.grid-container > div {
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* header */
+
+.item1,
+.item2,
+.item3,
+.item4 {
+    padding: 20px; 
+}
+
+.header,
+.sub-header,
+.sub-sub-header {
+    font-weight: bold;
+}
+
+.header {
+    font-size: 50px;
+    padding: 5px;
+    text-align: center;
+}
+
+.sub-header {
+    font-size: 30px;
+    margin: 0px;
+}
+
+.sub-sub-header {
+    font-size: 25px;
+    margin-bottom: 5px; 
+}
+
+.information-text {
+    font-size: 20px; 
+    margin-bottom: 10px;
+}
+
+#map-grid {
+    transform: scaleX(-1);
+}
+
+

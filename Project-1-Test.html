@@ -22,31 +22,29 @@
 
       <div class="grid-container">
         <div class="item1">
-          <div id="map">
-            <p>Map of Outbreak</p>
-				    <svg id="map-grid"></svg>
-          </div>
-          <div id="map-information">
-            <p>Map Information</p>
-            <p id="map-information-text">Hover over points on the map for additional information.</p>
-          </div>
+          <p class="sub-header">Map of Outbreak</p>
+          <p class="information-text" id="map-information-text">Hover over points on the map for additional information.</p>
+          <svg id="map-grid"></svg>
         </div>
 
         <div class="item2">
-          <p>Timeline of Deaths Per Day</p>
+          <p class="sub-header">Timeline of Deaths Per Day</p>
+          <p class="information-text">Hover over bars on the chart to visualize deaths by date on the map.</p>
 				  <svg id="timeline-grid"></svg>
         </div>
 
         <div class="item3">
-          <p>Deaths by Gender</p>
+          <p class="sub-sub-header">Deaths by Gender</p>
 				  <svg id="gender-graph-grid"></svg>
         </div>
 
         <div class="item4">
-          <p>Deaths by Age Group</p>
+          <p class="sub-sub-header">Deaths by Age Group</p>
 				  <svg id="age-graph-grid"></svg>
         </div>
       </div>
+
+      <div class="footer">Krystal Nolasco</div>
     </div>
 
     <script>
@@ -57,16 +55,23 @@
 
       // DRAWING THE MAP *********************************************************
 
+      var mapMargin = {top: 0, right: 20, bottom: 30, left: 60},
+					mapWidth = 700 - mapMargin.left - mapMargin.right,
+					mapHeight = 640 - mapMargin.top - mapMargin.bottom;
+
       // create svg area
       var svg_map = d3.select('#map-grid')
-        .attr('width', 600)
-        .attr('height', 600);
+        .attr('width', mapWidth + mapMargin.left + mapMargin.right)
+        .attr('height', mapHeight + mapMargin.top + mapMargin.bottom);
         //.style('border', 'solid');
 
       //map scale and offset
-      var mapScale = 30,
-        mapOffset_X = 650,
-        mapOffset_Y = 545;
+      //var mapScale = 30,
+      var mapScale = 40,
+        //mapOffset_X = 650,
+        //mapOffset_Y = 545;
+        mapOffset_X = 770,
+        mapOffset_Y = 720;
 
 
       //load streets data
@@ -76,7 +81,6 @@
         var linefunc = d3.svg.line()
           .x(function(d) {return (1 - d.x) * mapScale + mapOffset_X})
           .y(function(d) {return (1 - d.y) * mapScale + mapOffset_Y});
-          //.interpolate("linear");
 
         //draw map
         var drawMap = svg_map.selectAll('path')
@@ -207,9 +211,17 @@
           .data(data)
           .enter().append('circle')
           .style('fill', 'black')
-          .attr('r', 5)
+          .attr('r', 7)
           .attr('cx', function(d) {return (1 - d.x) * mapScale + mapOffset_X})
           .attr('cy', function(d) {return (1 - d.y) * mapScale + mapOffset_Y})
+          .on('mouseover', function (d) {
+            d3.select(this).attr('r', '10');
+            d3.select('#map-information-text').text('This is a water pump.');
+          })
+          .on('mouseout', function (d) {
+            d3.select(this).attr('r', '7');
+            d3.select('#map-information-text').text('Hover over points on the map for additional information.');
+          })
       });
 
 
@@ -253,14 +265,14 @@
                 return colorGreen;
               }
             })
-            .attr('r', 3)
+            .attr('r', 5)
             .attr('cx', function(d) {return (1 - d.x) * mapScale + mapOffset_X})
             .attr('cy', function(d) {return (1 - d.y) * mapScale + mapOffset_Y})
             //.attr('id', function(d) {return 'deaths' + d.id; })
             .attr('class', function(d) { return 'death' + d.date; })
             .on('mouseover', function (d) {
 
-              d3.select(this).attr('r', '6');
+              d3.select(this).attr('r', '8');
 
               //set victim age range
               var ageRange = "";
@@ -285,17 +297,18 @@
                   ageRange = "> 80";
               };
 
-              if (d.gender > 0) {
+              if (d.gender == 1) {
                 //victim is female
-                d3.select('#map-information-text').text('This victim was a female between ' + ageRange + ' years of age.');
-              } else if (d.gender <= 0) {
+                d3.select('#map-information-text').text('This was a female victim between ' + ageRange + ' years of age.');
+              } else if (d.gender == 0) {
                 //victim is male
-                d3.select('#map-information-text').text('This victim was a male between ' + ageRange + ' years of age.');
+                d3.select('#map-information-text').text('This was a male victim between ' + ageRange + ' years of age.');
               }
 
             })
             .on('mouseout', function (d) {
-              d3.select(this).attr('r', '3')
+              d3.select(this).attr('r', '5');
+              d3.select('#map-information-text').text('Hover over points on the map for additional information.');
             });
         });
       });
@@ -304,8 +317,8 @@
       // TIMELINE OF DEATHS BAR CHART ********************************************
 
 			var margin = {top: 0, right: 20, bottom: 30, left: 60},
-					width = 500 - margin.left - margin.right,
-					height = 500 - margin.top - margin.bottom;
+					width = 700 - margin.left - margin.right,
+					height = 640 - margin.top - margin.bottom;
 
 			//create svg area
 			var svg_timeline = d3.select('#timeline-grid')
@@ -335,8 +348,6 @@
 					var y_Axis = d3.svg.axis()
 						.orient('left')
 						.scale(timelineScale_Y);
-						//.ticks(7);
-						//.ticks(10);
 
 					svg_timeline.append("g")
 						.attr('class', 'x-axis')
@@ -353,15 +364,12 @@
 						.attr('class', 'y-axis-label')
 						.attr('text-anchor', 'middle')
 						.attr('y', 55)
-						//.attr('x', height / 2 - 60)
 						.attr('x', height / 2)
 						.attr('transform', 'translate(' + margin.left + ')')
 						.attr('transform', function(d) {
 							return 'translate(' + margin.left + ') rotate(90)'
 						})
 						.text('Number of Deaths');
-
-
 
 
 					//bar chart
@@ -402,8 +410,8 @@
       // GENDER SPLIT BAR GRAPH **************************************************
 
       var marginGender = {top: 30, right: 30, bottom: 90, left: 65},
-          widthGender = 400 - marginGender.left - marginGender.right,
-          heightGender = 400 - marginGender.top - marginGender.bottom;
+          widthGender = 500 - marginGender.left - marginGender.right,
+          heightGender = 500 - marginGender.top - marginGender.bottom;
 
       //svg area
       var svg_gender_graph = d3.select('#gender-graph-grid')
