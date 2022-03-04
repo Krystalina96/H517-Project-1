@@ -151,17 +151,27 @@
 
 		//WORK HOUSE
 		var workHouseGroup = svg_map.append('g')
-			.attr('transform', 'translate(335, 155) rotate(23)');
+			.attr('transform', 'translate(335, 155) rotate(23)')
+			.on('mouseover', function (d) {
+				d3.select('#workhouse-rect').attr('fill', colorRed);
+				d3.select('#workhouse-text').attr('fill', 'black');
+			})
+			.on('mouseout', function (d) {
+				d3.select('#workhouse-rect').attr('fill', 'black');
+				d3.select('#workhouse-text').attr('fill', 'white');
+			});
 
 		var rectWidth = 40,
 				rectHeight = 30;
 
 		workHouseGroup.append('rect')
+			.attr('id', 'workhouse-rect')
 			.attr('width', rectWidth)
 			.attr('height', rectHeight)
-			.style('fill', 'black');
+			//.style('fill', 'black');
 
-		var workHouseText = workHouseGroup.append('text')
+		workHouseGroup.append('text')
+			.attr('id', 'workhouse-text')
 			.attr('x', rectWidth / 2)
 			.attr('y', rectHeight / 2)
 			.attr('alignment-baseline', 'middle')
@@ -173,23 +183,33 @@
 
 			//BREWERY
 			var breweryGroup = svg_map.append('g')
-				.attr('transform', 'translate(247, 229) rotate(-62.5)');
+				.attr('transform', 'translate(247, 229) rotate(-62.5)')
+				.on('mouseover', function (d) {
+					d3.select('#brewery-rect').attr('fill', colorRed);
+					d3.select('#brewery-text').attr('fill', 'black');
+				})
+				.on('mouseout', function (d) {
+					d3.select('#brewery-rect').attr('fill', 'black');
+					d3.select('#brewery-text').attr('fill', 'white');
+				});
 
 			var breweryWidth = 32,
 					breweryHeight = 18;
 
-			breweryGroup.append('rect')
+			var breweryRect = breweryGroup.append('rect')
+				.attr('id', 'brewery-rect')
 				.attr('width', breweryWidth)
-				.attr('height', breweryHeight)
-				.style('fill', 'black');
+				.attr('height', breweryHeight);
+				//.style('fill', 'black');
 
-			var workHouseText = breweryGroup.append('text')
+			breweryGroup.append('text')
+				.attr('id', 'brewery-text')
 				.attr('x', breweryWidth / 2)
 				.attr('y', breweryHeight / 2)
 				.attr('alignment-baseline', 'middle')
 				.attr('text-anchor', 'middle')
 				.style('fill', 'white')
-				.style('font-size', 6)
+				.style('font-size', 7)
 				.style('font-weight', 'bold')
 				.text('Brewery');
 
